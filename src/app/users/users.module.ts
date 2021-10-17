@@ -9,6 +9,10 @@ import { UserComponent } from './user/user.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NumberOnlyDirective } from './number-only.directive';
+import { reducer } from '../store/Reduces/users.reducers';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { UsersEffect } from '../store/Effects/user.effect';
 
 @NgModule({
   imports: [
@@ -16,7 +20,9 @@ import { NumberOnlyDirective } from './number-only.directive';
     UsersRoutingModule,
     SharedModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StoreModule.forRoot({users:reducer}),
+    EffectsModule.forRoot([UsersEffect])
   ],
   declarations: [UserListComponent, UserComponent, UserDetailComponent, NumberOnlyDirective]
 })

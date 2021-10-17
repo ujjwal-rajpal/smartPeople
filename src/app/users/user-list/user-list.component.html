@@ -9,18 +9,19 @@
   <!-- name  -->
   <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef> Name </th>
-    <td mat-cell *matCellDef="let element"> {{element.name['firstName'] | titlecase}} {{element.name['lastName'] |
-      titlecase}} </td>
+    <td mat-cell *matCellDef="let element" > <span *ngIf="element.name != undefined">{{element.name['firstName'] | titlecase}} {{element.name['lastName'] |
+      titlecase}} </span></td>
   </ng-container>
 
   <!-- address -->
   <ng-container matColumnDef="address">
     <th mat-header-cell *matHeaderCellDef> Address </th>
-    <td mat-cell *matCellDef="let element"> {{element.address['lineOne']}}
+    <td mat-cell *matCellDef="let element"> <span *ngIf="element.address != undefined">{{element.address['lineOne']}}
       {{element.address['lineTwo']}} {{element.address['landmark']}}
       {{element.address['city']}}
       {{element.address['state']}} - 
       {{element.address['pincode']}}
+    </span>
     </td>
   </ng-container>
 
@@ -37,15 +38,15 @@
     <th mat-header-cell *matHeaderCellDef> Actions</th>
     <td mat-cell *matCellDef="let element let i=index">
       <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-around center" fxLayoutGap="10px">
-        <button mat-fab color="primary" aria-label="Example icon button with menu icon"
+        <button mat-icon-button color="primary" aria-label="Example icon button with menu icon"
           (click)="displayEmployee(element.id, 'display')">
           <mat-icon>menu</mat-icon>
         </button>
-        <button mat-fab color="primary" aria-label="Example icon button with a edit icon"
+        <button mat-icon-button color="primary" aria-label="Example icon button with a edit icon"
           (click)="displayEmployee(element.id, 'edit')">
           <mat-icon>edit</mat-icon>
         </button>
-        <button mat-fab color="warn" aria-label="Example icon button with a delete icon"
+        <button mat-icon-button color="warn" aria-label="Example icon button with a delete icon"
           (click)="deleteEmploye(element.id)">
           <mat-icon>delete</mat-icon>
         </button>
@@ -60,8 +61,8 @@
 <!-- for mobile devices -->
 <div fxLayout="column" fxLayoutAlign="space-around stretch" fxHide fxShow.xs fxLayoutGap="5px">
   <div *ngFor="let element of dataSource">
-    <mat-card>
-      <mat-card-title>
+    <mat-card >
+      <mat-card-title *ngIf="element.name != undefined">
         {{element.name['firstName'] | titlecase }} {{element.name['lastName'] | titlecase}}
       </mat-card-title>
       <mat-card-subtitle fxLayout="row" fxFill>
@@ -72,7 +73,7 @@
           Date of Birth : {{element.dob | date}}
         </div>
       </mat-card-subtitle>
-        <mat-card-content fxLayout="column" fxFill>
+        <mat-card-content fxLayout="column" fxFill *ngIf="element.address != undefined">
         <span>
           Address:
         </span>
@@ -92,17 +93,17 @@
       </mat-card-content>
       <mat-card-actions fxFill>
         <span fxFlex="30"> 
-        <a mat-fab color="primary" aria-label="Example icon button with menu icon" routerLink="/user/{{element.id}}">
+        <a mat-icon-button color="primary" aria-label="Example icon button with menu icon" routerLink="/user/{{element.id}}">
           <mat-icon>menu</mat-icon>
         </a>
       </span>
       <span fxFlex="30">
-        <a mat-fab color="primary" aria-label="Example icon button with a edit icon" routerLink="/user/{{element.id}}">
+        <a mat-icon-button color="primary" aria-label="Example icon button with a edit icon" routerLink="/user/{{element.id}}">
           <mat-icon>edit</mat-icon>
       </a>
     </span>
     <span fxFlex="30">
-        <a mat-fab color="warn" aria-label="Example icon button with a delete icon" routerLink="/user/{{element.id}}">
+        <a mat-icon-button color="warn" aria-label="Example icon button with a delete icon" routerLink="/user/{{element.id}}">
           <mat-icon>delete</mat-icon>
       </a>
     </span>
