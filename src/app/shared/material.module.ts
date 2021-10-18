@@ -15,10 +15,11 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 
 import {MatNativeDateModule} from '@angular/material';
 import {MatDividerModule} from '@angular/material/divider'; 
- 
+import { MatPaginatorModule } from '@angular/material/paginator'; 
+
 @NgModule({
-    imports:[ MatButtonModule, MatToolbarModule, MatSidenavModule, MatListModule, MatIconModule, MatTableModule, MatInputModule, MatCardModule, MatRadioModule, MatDatepickerModule, MatNativeDateModule, MatDividerModule ],
-    exports:[ MatButtonModule, MatToolbarModule, MatSidenavModule, MatListModule, MatIconModule, MatTableModule, MatInputModule, MatCardModule, MatRadioModule, MatDatepickerModule, MatNativeDateModule, MatDividerModule ]
+    imports:[ MatButtonModule, MatToolbarModule, MatSidenavModule, MatListModule, MatIconModule, MatTableModule, MatInputModule, MatCardModule, MatRadioModule, MatDatepickerModule, MatNativeDateModule, MatDividerModule, MatPaginatorModule ],
+    exports:[ MatButtonModule, MatToolbarModule, MatSidenavModule, MatListModule, MatIconModule, MatTableModule, MatInputModule, MatCardModule, MatRadioModule, MatDatepickerModule, MatNativeDateModule, MatDividerModule, MatPaginatorModule ]
 })
 
 export class MyMaterialModule{}

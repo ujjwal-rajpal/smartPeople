@@ -1,5 +1,4 @@
-
-<mat-card >
+<mat-card>
   <form [formGroup]="employee" (ngSubmit)="onSubmit()">
 
     <div formGroupName="name" fxLayout="column" fxLayoutAlign="Start center" fxLayoutGap="10px">
@@ -14,16 +13,16 @@
       </mat-form-field>
     </div>
     <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="Start center" fxLayoutGap="10px" fxFill>
-      <div fxFlex=50% fxLayoutGap="10px" fxFill> 
-      <label id="gender">Gender</label>
-      <mat-radio-group aria-label="Select an option" formControlName="gender" fxLayoutGap="5%">
-        <mat-radio-button value="Male">Male</mat-radio-button>
-        <mat-radio-button value="Female">Female</mat-radio-button>
-      </mat-radio-group>
-    </div>
+      <div fxFlex=50% fxLayoutGap="10px" fxFill>
+        <label id="gender">Gender</label>
+        <mat-radio-group aria-label="Select an option" formControlName="gender" fxLayoutGap="5%">
+          <mat-radio-button value="Male">Male</mat-radio-button>
+          <mat-radio-button value="Female">Female</mat-radio-button>
+        </mat-radio-group>
+      </div>
       <mat-form-field appearance="outline" fxFlex="50" fxFill>
         <mat-label>Choose D.o.b (Required)*</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="dob" (click)="picker.open()" >
+        <input matInput [matDatepicker]="picker" formControlName="dob" (click)="picker.open()">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
         <mat-error>Dob is required.</mat-error>
@@ -70,17 +69,25 @@
     <mat-form-field appearance="outline" fxFill>
       <mat-label>Email (Required)*</mat-label>
       <input matInput formControlName="email">
-      <mat-error *ngIf="!employee.controls['email'].valid && employee.controls['email'].errors['required']">Email is required.</mat-error>
-      <mat-error *ngIf="!employee.controls['email'].valid && employee.controls['email'].errors['email']">Email is Invalid.</mat-error>
+        <mat-error
+          *ngIf="( employee.controls['phone'].pristine  && !employee.controls['email'].valid && employee.controls['email'].touched && employee.controls['email'].errors['required'])">Email
+          is required.</mat-error>
+        <mat-error
+          *ngIf="employee.controls['email'].touched && employee.controls['phone'].pristine && !employee.controls['email'].valid && employee.controls['email'].errors['email']">
+          Email is Invalid.</mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline" fxFill>
       <mat-label>Mobile Number (Required)*</mat-label>
       <input matInput formControlName="phone" appNumberOnly>
-      <mat-error *ngIf="!employee.controls['phone'].valid && employee.controls['phone'].errors['required']">Mobile NUmber is required</mat-error>
-      <mat-error *ngIf="!employee.controls['phone'].valid && ( employee.controls['phone'].errors['minlength'] || employee.controls['phone'].errors['maxlength']) ">Mobile Number is Invalid</mat-error>
+      <mat-error
+        *ngIf="employee.controls['phone'].pristine && employee.controls['phone'].touched && !employee.controls['phone'].valid && employee.controls['phone'].errors['required']">
+        Mobile NUmber is required</mat-error>
+      <mat-error
+        *ngIf=" employee.controls['phone'].pristine && employee.controls['phone'].touched && !employee.controls['phone'].valid && ( employee.controls['phone'].errors['minlength'] || employee.controls['phone'].errors['maxlength']) ">
+        Mobile Number is Invalid</mat-error>
     </mat-form-field>
     <!-- </div> -->
     <button mat-raised-button color="primary" type="submit" [disabled]="!employee.valid"
-      *ngIf="displaySubmit == true">Submit</button>
+      *ngIf="display === true">Submit</button>
   </form>
 </mat-card>

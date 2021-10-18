@@ -45,6 +45,10 @@ private user = new BehaviorSubject({});
       .pipe(catchError(this.formatErrors));
   }
 
+  getSingleEmployee(path:string, id:number): Observable<any>{
+    return this.http.get(`${environment.apiUrl}${path}/${id}`)
+  }
+
   /*
   * used delete employee
   * @param path|page|limit
@@ -63,6 +67,16 @@ private user = new BehaviorSubject({});
   newEmployee(path: string, value: object): Observable<any> {
     return this.http.post(`${environment.apiUrl}${path}`, value)
       .pipe(catchError(this.formatErrors));
+  }
+
+  /**
+   * get city and states
+   * @param postalId 
+   * @returns 
+   */
+  getPostalCodes(postalId: number):Observable<any>{
+    return this.http.get(`${environment.postalCodesUrl}/${postalId}`)
+    .pipe(catchError(this.formatErrors));
   }
 
 }

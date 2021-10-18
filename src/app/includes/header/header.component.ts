@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from 'src/app/core/service/employee.service';
-
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -12,17 +12,19 @@ export class HeaderComponent implements OnInit {
   
   
 
-  constructor(private employee : EmployeeService) {}
+  constructor(private employee : EmployeeService,
+    private _route: ActivatedRoute,
+    private _router: Router,
+    ) {}
 
   ngOnInit() {
+    
   }
 
   createNewEmploye(){
-    let data = {
-      employe : new Object(),
-      opration: "create"
-    }
-    this.employee.updateUser(data);
+    this._router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
+      this._router.navigate(['users/createNew']));
+      this.employee.updateUser("createUser");
   }
 
 }
