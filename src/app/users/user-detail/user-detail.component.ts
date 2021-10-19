@@ -5,7 +5,7 @@ import { GlobalConstants } from 'src/app/includes/common';
 import { select, Store } from '@ngrx/store';
 import { USER_LIST_SELECTOR, USER_SELECTOR } from 'src/app/store/Selector/user.selector';
 import { ActivatedRoute } from '@angular/router';
-import { NewUserSubmit } from 'src/app/store/Action/user.actions';
+import { NewUserSubmit, UserEdit } from 'src/app/store/Action/user.actions';
 
 @Component({
   selector: 'app-user-detail',
@@ -47,7 +47,6 @@ export class UserDetailComponent implements OnInit {
 
     this.store.pipe(select(USER_SELECTOR)).subscribe(data => {
       if (data) {
-
         let employee = data;
         this.displayEmployee(employee['users']['singleEmployee']);
         if (employee['users']['operation'] === "display") {
@@ -78,10 +77,13 @@ export class UserDetailComponent implements OnInit {
   onSubmit() {
     if (!this.employee.valid) return
     if (this.operation == "create")
-      this.store.dispatch(new NewUserSubmit(this.employee.value))
+      this.store.dispatch(new NewUserSubmit(this.employee.value));
     else if (this.operation = "edit") {
-
+      this.store.dispatch(new UserEdit(this.employee.value));
     }
+    this.employee.markAsPristine();
+    this.employee.markAsUntouched();
+    this.employee.reset();
   }
   /**
    * used to edit employee

@@ -62,4 +62,8 @@ export class UserListComponent implements OnInit {
       this.store.dispatch(new Operation(op))
    }
 
+   getPageDetails(event:any) {
+    this.getEmployeeList(event.pageIndex+1,15);
+  }
+
 }

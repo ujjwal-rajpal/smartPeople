@@ -9,8 +9,10 @@ export const GET_USER_LIST_SUCESS = 'UserList_Get_Sucess';
 export const GET_USER = 'User_Get';
 export const GET_USER_SUCESS = 'User_Get_Sucess';
 export const OPERATION = 'OPERATION';
-export const SUBMIT_NEW_USER = 'USER_NEW_SUBMIT';
+export const SUBMIT_NEW_USER = 'User_New_Submit';
 export const NEW_USER_SUCESS = 'User_New_Sucess';
+export const USER_EDIT = 'User_Edit';
+export const USER_EDIT_SUCESS = 'User_Edit_Sucess';
 
 export class GetUserList implements Action {
     readonly type = GET_USER_LIST;
@@ -57,4 +59,14 @@ export class NewUserSucess implements Action{
     readonly type = NEW_USER_SUCESS;
     constructor(public user: any){}
 }
-export type Actions =  DeleteUser | DeleteUserSuccess | GetUserList | GetUserListSuccess | GetUser |GetUserSuccess | Operation | NewUserSubmit | NewUserSucess;
+
+export class UserEdit implements Action{
+    readonly type = USER_EDIT;
+    constructor(public user: any){}
+}
+
+export class UserEditSucess implements Action{
+    readonly type = USER_EDIT_SUCESS;
+    constructor(public user: any){}
+}
+export type Actions =  DeleteUser | DeleteUserSuccess | GetUserList | GetUserListSuccess | GetUser |GetUserSuccess | Operation | NewUserSubmit | NewUserSucess | UserEdit | UserEditSucess;

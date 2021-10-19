@@ -1,5 +1,5 @@
 import { User } from 'src/app/core/models/user';
-import { Actions, OPERATION, CREATE_USER,  DELETE_USER_SUCCESS, GET_USER_LIST_SUCESS, GET_USER_SUCESS, NEW_USER_SUCESS  } from '../Action/user.actions';
+import { Actions, OPERATION, CREATE_USER,  DELETE_USER_SUCCESS, GET_USER_LIST_SUCESS, GET_USER_SUCESS, NEW_USER_SUCESS, USER_EDIT_SUCESS  } from '../Action/user.actions';
 
 const initialState = {
   data:{
@@ -55,6 +55,15 @@ export function reducer(
                return{
                   ...state,
                   employeeList : emp
+                }  
+                case USER_EDIT_SUCESS:
+                let newempList = state['employeeList'].map((element)=>{
+                  if(element.id === action.user.id)return action.user
+                  return element;
+                })
+               return{
+                  ...state,
+                  employeeList : newempList
                 }  
         default:
             return state;

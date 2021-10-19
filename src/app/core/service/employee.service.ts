@@ -69,6 +69,10 @@ private user = new BehaviorSubject({});
       .pipe(catchError(this.formatErrors));
   }
 
+  editEmployee(path: string,id:number, value: object): Observable<any>{
+    return this.http.put(`${environment.apiUrl}${path}/${id}`,value)
+  }
+
   /**
    * get city and states
    * @param postalId 
