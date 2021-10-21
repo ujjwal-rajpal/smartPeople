@@ -1,5 +1,5 @@
 import { User } from 'src/app/core/models/user';
-import { Actions, OPERATION, CREATE_USER,  DELETE_USER_SUCCESS, GET_USER_LIST_SUCESS, GET_USER_SUCESS, NEW_USER_SUCESS, USER_EDIT_SUCESS  } from '../Action/user.actions';
+import { Actions, CREATE_USER,  DELETE_USER_SUCCESS, GET_USER_LIST_SUCESS, GET_USER_SUCESS, NEW_USER_SUCESS, USER_EDIT_SUCESS, OPERATION  } from '../Action/user.actions';
 
 const initialState = {
   data:{
@@ -51,7 +51,7 @@ export function reducer(
                 }
                 case NEW_USER_SUCESS:
                 state['employeeList'].unshift(action.user);
-                let emp = state['employeeList'].slice(0,5);
+                let emp = state['employeeList'].slice(0,15);
                return{
                   ...state,
                   employeeList : emp

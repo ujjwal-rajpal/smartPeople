@@ -5,14 +5,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { UserComponent } from './user/user.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 const routes: Routes=[
-  {path: "", redirectTo:'/users', pathMatch: 'full'}, 
-  {path:'users', component:UserComponent,
-    children:[
-      {path:':id/:operation', component: UserDetailComponent},
-      {path:'createNew', component: UserDetailComponent}
-    ]
-  }
-   
+  {
+    path: "", 
+    redirectTo:'/users', 
+    pathMatch: 'full'
+  }, 
+  {
+    path:'users', 
+    component:UserComponent
+  },
 ]
 
 

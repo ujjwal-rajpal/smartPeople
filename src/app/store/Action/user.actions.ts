@@ -13,6 +13,7 @@ export const SUBMIT_NEW_USER = 'User_New_Submit';
 export const NEW_USER_SUCESS = 'User_New_Sucess';
 export const USER_EDIT = 'User_Edit';
 export const USER_EDIT_SUCESS = 'User_Edit_Sucess';
+export const ERROR_RESPONSE = 'Error_Response';
 
 export class GetUserList implements Action {
     readonly type = GET_USER_LIST;
@@ -69,4 +70,9 @@ export class UserEditSucess implements Action{
     readonly type = USER_EDIT_SUCESS;
     constructor(public user: any){}
 }
-export type Actions =  DeleteUser | DeleteUserSuccess | GetUserList | GetUserListSuccess | GetUser |GetUserSuccess | Operation | NewUserSubmit | NewUserSucess | UserEdit | UserEditSucess;
+export class ErrorResponse implements Action{
+    readonly type = ERROR_RESPONSE;
+    constructor(public user: any){}
+}
+
+export type Actions =  DeleteUser | DeleteUserSuccess | GetUserList | GetUserListSuccess | GetUser |GetUserSuccess | Operation | NewUserSubmit | NewUserSucess | UserEdit | UserEditSucess | ErrorResponse;

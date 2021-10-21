@@ -68,13 +68,20 @@ private user = new BehaviorSubject({});
     return this.http.post(`${environment.apiUrl}${path}`, value)
       .pipe(catchError(this.formatErrors));
   }
+  /**
+   * used to edit employee.
+   * @param path 
+   * @param id 
+   * @param value 
+   * @returns observable | error
+   */
 
   editEmployee(path: string,id:number, value: object): Observable<any>{
     return this.http.put(`${environment.apiUrl}${path}/${id}`,value)
   }
 
   /**
-   * get city and states
+   * get city and states.
    * @param postalId 
    * @returns 
    */

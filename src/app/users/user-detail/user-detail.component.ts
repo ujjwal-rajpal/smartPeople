@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { EmployeeService } from 'src/app/core/service/employee.service';
-import { GlobalConstants } from 'src/app/includes/common';
 import { select, Store } from '@ngrx/store';
-import { USER_LIST_SELECTOR, USER_SELECTOR } from 'src/app/store/Selector/user.selector';
+import { USER_SELECTOR } from 'src/app/store/Selector/user.selector';
 import { ActivatedRoute } from '@angular/router';
-import { NewUserSubmit, UserEdit } from 'src/app/store/Action/user.actions';
-
+import { NewUserSubmit,  UserEdit} from 'src/app/store/Action/user.actions';
+import {MatDialogRef} from "@angular/material";
+import {MatSnackBar,  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,} from '@angular/material/snack-bar';
+  
 @Component({
   selector: 'app-user-detail',
   templateUrl: './user-detail.component.html',
@@ -15,9 +17,11 @@ import { NewUserSubmit, UserEdit } from 'src/app/store/Action/user.actions';
 export class UserDetailComponent implements OnInit {
 
   constructor(
-    private employees: EmployeeService,
-    private store: Store<any>,
-    private _route: ActivatedRoute
+    private _employees: EmployeeService,
+    private _store: Store<any>,
+    private _route: ActivatedRoute,
+    private _dialogRef: MatDialogRef<UserDetailComponent>,
+    private _snackBar: MatSnackBar
   ) { }
   phoneNumber = "^(\+\d{1,3}[- ]?)?\d{10}$";
   employee = new FormGroup({
@@ -42,10 +46,12 @@ export class UserDetailComponent implements OnInit {
 
   display: boolean = false;
   operation: string;
-
+  horizontalPosition: MatSnackBarHorizontalPosition = 'end';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
+  states=["Haryana", "Punjab", "Delhi", "Odisha"]
   ngOnInit() {
 
-    this.store.pipe(select(USER_SELECTOR)).subscribe(data => {
+    this._store.pipe(select(USER_SELECTOR)).subscribe(data => {
       if (data) {
         let employee = data;
         this.displayEmployee(employee['users']['singleEmployee']);
@@ -62,7 +68,7 @@ export class UserDetailComponent implements OnInit {
       }
     })
 
-    this.employees.getUpdatedUser().subscribe(data => {
+    this._employees.getUpdatedUser().subscribe(data => {
       if (data) {
         if (data === "createUser") {
           this.display = true;
@@ -77,13 +83,19 @@ export class UserDetailComponent implements OnInit {
   onSubmit() {
     if (!this.employee.valid) return
     if (this.operation == "create")
-      this.store.dispatch(new NewUserSubmit(this.employee.value));
+      this._store.dispatch(new NewUserSubmit(this.employee.value));
     else if (this.operation = "edit") {
-      this.store.dispatch(new UserEdit(this.employee.value));
+      this._store.dispatch(new UserEdit(this.employee.value));
     }
     this.employee.markAsPristine();
     this.employee.markAsUntouched();
     this.employee.reset();
+    this._dialogRef.close();
+    this._snackBar.open(`${this.operation == "create" ? "User created successfully.": "User edited successfully."}`, '', {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+      duration: 2000
+    });
   }
   /**
    * used to edit employee
@@ -113,5 +125,11 @@ export class UserDetailComponent implements OnInit {
 
       })
     }
+  }
+  /**
+   * used to close the dialog
+   */  
+  close(){
+    this._dialogRef.close();
   }
 }

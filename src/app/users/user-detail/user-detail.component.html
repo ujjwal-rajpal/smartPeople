@@ -13,14 +13,14 @@
       </mat-form-field>
     </div>
     <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="Start center" fxLayoutGap="10px" fxFill>
-      <div fxFlex=50% fxLayoutGap="10px" fxFill>
+      <div fxFlex="60" fxLayoutGap="10px" fxFill>
         <label id="gender">Gender</label>
         <mat-radio-group aria-label="Select an option" formControlName="gender" fxLayoutGap="5%">
           <mat-radio-button value="Male">Male</mat-radio-button>
           <mat-radio-button value="Female">Female</mat-radio-button>
         </mat-radio-group>
       </div>
-      <mat-form-field appearance="outline" fxFlex="50" fxFill>
+      <mat-form-field appearance="outline" fxFlex="40" fxFill>
         <mat-label>Choose D.o.b (Required)*</mat-label>
         <input matInput [matDatepicker]="picker" formControlName="dob" (click)="picker.open()">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -43,14 +43,18 @@
       </mat-form-field>
       <div fxLayout="row" fxLayoutAlign="Start center" fxLayoutGap="10px" fxFill>
         <mat-form-field appearance="outline" fxFlex="50">
+          <mat-label>State (Required)*</mat-label>
+          <mat-select formControlName="state">
+            <mat-option *ngFor="let state of states" [value]="state">
+              {{state}}
+            </mat-option>
+          </mat-select>
+          <mat-error>State is required.</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="50">
           <mat-label>City (Required)*</mat-label>
           <input matInput formControlName="city">
           <mat-error>City is required.</mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="outline" fxFlex="50">
-          <mat-label>State (Required)*</mat-label>
-          <input matInput formControlName="state">
-          <mat-error>State is required.</mat-error>
         </mat-form-field>
       </div>
       <div fxLayout="row" fxLayoutAlign="Start center" fxLayoutGap="10px" fxFill>
@@ -59,13 +63,12 @@
           <input matInput formControlName="pincode" appNumberOnly>
           <mat-error>Pincode is required.</mat-error>
         </mat-form-field>
-        <mat-form-field appearance="outline" fxFLex="50">
-          <mat-label>LandMark</mat-label>
+        <mat-form-field appearance="outline" fxFlex="50">
+          <mat-label>Landmark</mat-label>
           <input matInput formControlName="landMark">
         </mat-form-field>
       </div>
     </div>
-    <!-- <div fxLayout="row" fxLayoutAlign="Start center" fxLayoutGap="10px" fxFill> -->
     <mat-form-field appearance="outline" fxFill>
       <mat-label>Email (Required)*</mat-label>
       <input matInput formControlName="email">
@@ -86,8 +89,11 @@
         *ngIf=" employee.controls['phone'].pristine && employee.controls['phone'].touched && !employee.controls['phone'].valid && ( employee.controls['phone'].errors['minlength'] || employee.controls['phone'].errors['maxlength']) ">
         Mobile Number is Invalid</mat-error>
     </mat-form-field>
-    <!-- </div> -->
+    <div fxLayout="row" fxLayoutAlign="end center" fxFill fxLayoutGap="20px"> 
     <button mat-raised-button color="primary" type="button" (click)="onSubmit()" [disabled]="!employee.valid"
-      *ngIf="display === true">Submit</button>
+      *ngIf="display === true" [ngClass]="{'button': true}">Submit</button>
+      <button mat-raised-button  type="button" (click)="close()" [ngClass]="{'button': true}"
+      >Close</button>
+    </div>
   </form>
 </mat-card>

@@ -16,10 +16,13 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material';
 import {MatDividerModule} from '@angular/material/divider'; 
 import { MatPaginatorModule } from '@angular/material/paginator'; 
+import {MatDialogModule} from '@angular/material/dialog'; 
+import { MatSnackBarModule } from '@angular/material/snack-bar'; 
+import {MatSelectModule} from '@angular/material/select'; 
 
 @NgModule({
-    imports:[ MatButtonModule, MatToolbarModule, MatSidenavModule, MatListModule, MatIconModule, MatTableModule, MatInputModule, MatCardModule, MatRadioModule, MatDatepickerModule, MatNativeDateModule, MatDividerModule, MatPaginatorModule ],
-    exports:[ MatButtonModule, MatToolbarModule, MatSidenavModule, MatListModule, MatIconModule, MatTableModule, MatInputModule, MatCardModule, MatRadioModule, MatDatepickerModule, MatNativeDateModule, MatDividerModule, MatPaginatorModule ]
+    imports:[ MatButtonModule, MatToolbarModule, MatSidenavModule, MatListModule, MatIconModule, MatTableModule, MatInputModule, MatCardModule, MatRadioModule, MatDatepickerModule, MatNativeDateModule, MatDividerModule, MatPaginatorModule, MatDialogModule, MatSnackBarModule, MatSelectModule ],
+    exports:[ MatButtonModule, MatToolbarModule, MatSidenavModule, MatListModule, MatIconModule, MatTableModule, MatInputModule, MatCardModule, MatRadioModule, MatDatepickerModule, MatNativeDateModule, MatDividerModule, MatPaginatorModule, MatDialogModule, MatSnackBarModule, MatSelectModule ]
 })
 
 export class MyMaterialModule{}

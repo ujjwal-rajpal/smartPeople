@@ -70,3 +70,12 @@ table {
    .mat-column-Action {
      text-align: center;
    }
+
+   .centeredAction{
+     text-align: center;
+   }
+
+   .cdk-overlay-pane {
+    max-width: 100vw !important;
+  }
+   

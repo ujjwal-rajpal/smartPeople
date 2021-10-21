@@ -6,7 +6,6 @@ import { GET_USER_LIST, GetUserListSuccess, GET_USER, GetUserSuccess, DeleteUser
 import { catchError, concatMap, exhaustMap, map, mergeMap } from "rxjs/operators";
 import { EmployeeService } from 'src/app/core/service/employee.service';
 import { GlobalConstants } from 'src/app/includes/common';
-import { dispatch } from "rxjs/internal/observable/pairs";
 @Injectable()
 export class UsersEffect {
   constructor(private _actions$: Actions, private _employeeService: EmployeeService) { }
